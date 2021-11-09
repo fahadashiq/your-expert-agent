@@ -42,6 +42,9 @@
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
     "languages": ["en", "de"],
-    "enableGradleEnterprise": false
+    "enableGradleEnterprise": false,
+    "herokuAppName": "your-expert-agent",
+    "herokuDeployType": "git",
+    "herokuJavaVersion": "11"
   }
 }
