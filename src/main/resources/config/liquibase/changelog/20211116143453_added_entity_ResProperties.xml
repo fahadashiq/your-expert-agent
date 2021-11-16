@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity ResProperties.
+    -->
+    <changeSet id="20211116143453-1" author="jhipster">
+        <createTable tableName="res_properties">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="community_id" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="community_name" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="builder_id" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="special_offers" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="brochure" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="floor_plan_id" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="latitude" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="longitude" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="county" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="heatsystem" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="liststatus" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="liststatusflag" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="carportcap" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="possession" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="schoolname1" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="subdivide" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="vowavmyn" type="varchar(1)">
+                <constraints nullable="true" />
+            </column>
+            <column name="presentuse" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="proposeduse" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="ranchname" type="varchar(15)">
+                <constraints nullable="true" />
+            </column>
+            <column name="roombed2width" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomdininglevel" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomliving2width" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomstudylevel" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="area" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="areatitle" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="assocfee" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="financeproposed" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="listpriceorig" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="mapcoord" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="schoolname2" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomgaragewidth" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomkitchendesc" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomliving1width" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomother2width" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="sqfttotal" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="officelist_officenam1" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="schoolname3" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="zipcode" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="barn1length" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="barn3width" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roombed2length" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roombed3length" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomother1width" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="agentlist_fullname" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="proptype" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="mls_proptype" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="schoolname4" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="acrescultivated" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="barn2length" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="barn2width" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="complexname" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="roombed4length" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roombedbathdesc" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="roombreakfastwidth" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomother" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomutilitylength" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="acres" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="block" type="varchar(7)">
+                <constraints nullable="true" />
+            </column>
+            <column name="directions" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="subdivision" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="yearbuilt" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="yearbuiltdetails" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="agexemption" type="varchar(1)">
+                <constraints nullable="true" />
+            </column>
+            <column name="barn1width" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="barn3length" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomdiningwidth" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomstudywidth" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="soiltype" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="appraisername" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="listpricelow" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="mappage" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="unitnumber" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="streetdir" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="streettype" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="subarea" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="subareatitle" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="bathshalf" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomgaragelength" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="propsubtype" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="beds" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roommasterbedwidth" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomstudylength" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="agentlist" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="streetname" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="roombreakfastlength" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomkitchenwidth" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="fence" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="bathstotal" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="garagecap" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="sqftprice" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="style" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="exterior" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="foundation" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="interior" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="poolyn" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="pool_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="listprice" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="listpricerange" type="varchar(1)">
+                <constraints nullable="true" />
+            </column>
+            <column name="mlsnum" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="matrixid" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="remarks" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="state" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="roof" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="securityfeatures" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="utilitiesother" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="commonfeatures" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="construction" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="modified" type="${datetimeType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="stories" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomdininglength" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomliving1length" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="openhousetime" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="openhouseendtime" type="varchar(25)">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomliving2length" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="lotdesc" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="openhousedate" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="roommasterbedlength" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomother1length" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="officesell_officenam2" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="lotsize" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="streetdirsuffix" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="photocount" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="schooldistrict" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="streetnum" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="utilities" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="equipment" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="roombed4width" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomkitchenlength" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="city" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="garagedesc" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="bathsfull" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roombed3width" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomutildesc" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomutilitywidth" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="roomfullbathlength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomfullbathwidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomhalfbathlength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomhalfbathwidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomexerciselength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomexercisewidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomstoragelength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomstoragewidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomgamelength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomgamewidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomguestlength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomguestwidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomlibrarylength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomlibrarywidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roommedialength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roommediawidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roommudlength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roommudwidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomofficelength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomofficewidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomsaunalength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomsaunawidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomsecondmasterlength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomsecondmasterwidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomsunlength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomsunwidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomspalength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomspawidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomwinelength" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="roomwinewidth" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="juniorhighschoolname" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="primaryschoolname" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="seniorhighschoolname" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="associationfee" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="associationfeefrequency" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="constructionmaterials" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="heating" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="accessoryunittype" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="accessoryunityn" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="flooring" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="fireplacestotal" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="fireplacefeatures" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="securitysystemyn" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="greenbuildingcertification" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="greenenergyefficient" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="energysavingfeatures" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="lotnumber" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="lotsizearea" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="lotsizedimensions" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="easements" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="restrictions" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="washerdryerconnections" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="municipalutilitydistrictyn" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="associationfeeincludes" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="associationtype" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="barninformation" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="constructionmaterialswalls" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="countyorparish" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="exteriorbuildings" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="farmranchfeatures" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="fencedyardyn" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="financingproposed" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="handicapyn" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="numberoftanksandponds" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="parcelnumber" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="virtualtoururlunbranded" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="living_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="master_bed_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="bed_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="dining_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="kitchen_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="breakfast_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="study_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="utility_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="full_bath_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="half_bath_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="exercise_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="extra_storage_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="game_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="guest_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="library_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="media_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="mud_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="office_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="sauna_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="second_master_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="sunroom_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="spa_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="wine_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="other_room_feature" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="is_luxury" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="is_move_in_ready" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo_url" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="photo1_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo2_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo3_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo4_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo5_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo6_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo7_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo8_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo9_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo10_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo11_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo12_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo13_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo14_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo15_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo16_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo17_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo18_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo19_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo20_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo21_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo22_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo23_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo24_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo25_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo26_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo27_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo28_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo29_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo30_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo31_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo32_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo33_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo34_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo35_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo36_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo37_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo38_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo39_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="photo40_url" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="created" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="updated" type="${datetimeType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="modified_date" type="${datetimeType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="img_deleted" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="rets_server" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+            <column name="permalink" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="property_tag" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="buildentory_views" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="location" type="POINT">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="res_properties" columnName="modified" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="res_properties" columnName="openhousedate" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="res_properties" columnName="created" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="res_properties" columnName="updated" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="res_properties" columnName="modified_date" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20211116143453-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/res_properties.csv"
+                  separator=";"
+                  tableName="res_properties"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="community_id" type="numeric"/>
+            <column name="community_name" type="string"/>
+            <column name="builder_id" type="numeric"/>
+            <column name="special_offers" type="string"/>
+            <column name="brochure" type="string"/>
+            <column name="floor_plan_id" type="numeric"/>
+            <column name="latitude" type="string"/>
+            <column name="longitude" type="string"/>
+            <column name="county" type="string"/>
+            <column name="heatsystem" type="string"/>
+            <column name="liststatus" type="string"/>
+            <column name="liststatusflag" type="string"/>
+            <column name="carportcap" type="string"/>
+            <column name="possession" type="string"/>
+            <column name="schoolname_1" type="string"/>
+            <column name="subdivide" type="string"/>
+            <column name="vowavmyn" type="string"/>
+            <column name="presentuse" type="string"/>
+            <column name="proposeduse" type="string"/>
+            <column name="ranchname" type="string"/>
+            <column name="roombed_2_width" type="numeric"/>
+            <column name="roomdininglevel" type="string"/>
+            <column name="roomliving_2_width" type="numeric"/>
+            <column name="roomstudylevel" type="string"/>
+            <column name="area" type="numeric"/>
+            <column name="areatitle" type="string"/>
+            <column name="assocfee" type="numeric"/>
+            <column name="financeproposed" type="string"/>
+            <column name="listpriceorig" type="numeric"/>
+            <column name="mapcoord" type="string"/>
+            <column name="schoolname_2" type="string"/>
+            <column name="roomgaragewidth" type="numeric"/>
+            <column name="roomkitchendesc" type="string"/>
+            <column name="roomliving_1_width" type="numeric"/>
+            <column name="roomother_2_width" type="numeric"/>
+            <column name="sqfttotal" type="numeric"/>
+            <column name="officelist_officenam_1" type="string"/>
+            <column name="schoolname_3" type="string"/>
+            <column name="zipcode" type="string"/>
+            <column name="barn_1_length" type="numeric"/>
+            <column name="barn_3_width" type="numeric"/>
+            <column name="roombed_2_length" type="numeric"/>
+            <column name="roombed_3_length" type="numeric"/>
+            <column name="roomother_1_width" type="numeric"/>
+            <column name="agentlist_fullname" type="string"/>
+            <column name="proptype" type="string"/>
+            <column name="mls_proptype" type="string"/>
+            <column name="schoolname_4" type="string"/>
+            <column name="acrescultivated" type="numeric"/>
+            <column name="barn_2_length" type="numeric"/>
+            <column name="barn_2_width" type="numeric"/>
+            <column name="complexname" type="string"/>
+            <column name="roombed_4_length" type="numeric"/>
+            <column name="roombedbathdesc" type="string"/>
+            <column name="roombreakfastwidth" type="numeric"/>
+            <column name="roomother" type="string"/>
+            <column name="roomutilitylength" type="numeric"/>
+            <column name="acres" type="numeric"/>
+            <column name="block" type="string"/>
+            <column name="directions" type="string"/>
+            <column name="subdivision" type="string"/>
+            <column name="yearbuilt" type="numeric"/>
+            <column name="yearbuiltdetails" type="string"/>
+            <column name="agexemption" type="string"/>
+            <column name="barn_1_width" type="numeric"/>
+            <column name="barn_3_length" type="numeric"/>
+            <column name="roomdiningwidth" type="numeric"/>
+            <column name="roomstudywidth" type="numeric"/>
+            <column name="soiltype" type="string"/>
+            <column name="appraisername" type="string"/>
+            <column name="listpricelow" type="numeric"/>
+            <column name="mappage" type="string"/>
+            <column name="unitnumber" type="string"/>
+            <column name="streetdir" type="string"/>
+            <column name="streettype" type="string"/>
+            <column name="subarea" type="string"/>
+            <column name="subareatitle" type="string"/>
+            <column name="bathshalf" type="numeric"/>
+            <column name="roomgaragelength" type="numeric"/>
+            <column name="propsubtype" type="string"/>
+            <column name="beds" type="numeric"/>
+            <column name="roommasterbedwidth" type="numeric"/>
+            <column name="roomstudylength" type="numeric"/>
+            <column name="agentlist" type="string"/>
+            <column name="streetname" type="string"/>
+            <column name="roombreakfastlength" type="numeric"/>
+            <column name="roomkitchenwidth" type="numeric"/>
+            <column name="fence" type="string"/>
+            <column name="bathstotal" type="numeric"/>
+            <column name="garagecap" type="numeric"/>
+            <column name="sqftprice" type="numeric"/>
+            <column name="style" type="string"/>
+            <column name="exterior" type="string"/>
+            <column name="foundation" type="string"/>
+            <column name="interior" type="string"/>
+            <column name="poolyn" type="string"/>
+            <column name="pool_feature" type="string"/>
+            <column name="listprice" type="numeric"/>
+            <column name="listpricerange" type="string"/>
+            <column name="mlsnum" type="string"/>
+            <column name="matrixid" type="numeric"/>
+            <column name="remarks" type="string"/>
+            <column name="state" type="string"/>
+            <column name="roof" type="string"/>
+            <column name="securityfeatures" type="string"/>
+            <column name="utilitiesother" type="string"/>
+            <column name="commonfeatures" type="string"/>
+            <column name="construction" type="string"/>
+            <column name="modified" type="date"/>
+            <column name="stories" type="numeric"/>
+            <column name="roomdininglength" type="numeric"/>
+            <column name="roomliving_1_length" type="numeric"/>
+            <column name="openhousetime" type="string"/>
+            <column name="openhouseendtime" type="string"/>
+            <column name="roomliving_2_length" type="numeric"/>
+            <column name="lotdesc" type="string"/>
+            <column name="openhousedate" type="date"/>
+            <column name="roommasterbedlength" type="numeric"/>
+            <column name="roomother_1_length" type="numeric"/>
+            <column name="officesell_officenam_2" type="string"/>
+            <column name="lotsize" type="string"/>
+            <column name="streetdirsuffix" type="string"/>
+            <column name="photocount" type="numeric"/>
+            <column name="schooldistrict" type="string"/>
+            <column name="streetnum" type="numeric"/>
+            <column name="utilities" type="string"/>
+            <column name="equipment" type="string"/>
+            <column name="roombed_4_width" type="numeric"/>
+            <column name="roomkitchenlength" type="numeric"/>
+            <column name="city" type="string"/>
+            <column name="garagedesc" type="string"/>
+            <column name="bathsfull" type="numeric"/>
+            <column name="roombed_3_width" type="numeric"/>
+            <column name="roomutildesc" type="string"/>
+            <column name="roomutilitywidth" type="numeric"/>
+            <column name="roomfullbathlength" type="string"/>
+            <column name="roomfullbathwidth" type="string"/>
+            <column name="roomhalfbathlength" type="string"/>
+            <column name="roomhalfbathwidth" type="string"/>
+            <column name="roomexerciselength" type="string"/>
+            <column name="roomexercisewidth" type="string"/>
+            <column name="roomstoragelength" type="string"/>
+            <column name="roomstoragewidth" type="string"/>
+            <column name="roomgamelength" type="string"/>
+            <column name="roomgamewidth" type="string"/>
+            <column name="roomguestlength" type="string"/>
+            <column name="roomguestwidth" type="string"/>
+            <column name="roomlibrarylength" type="string"/>
+            <column name="roomlibrarywidth" type="string"/>
+            <column name="roommedialength" type="string"/>
+            <column name="roommediawidth" type="string"/>
+            <column name="roommudlength" type="string"/>
+            <column name="roommudwidth" type="string"/>
+            <column name="roomofficelength" type="string"/>
+            <column name="roomofficewidth" type="string"/>
+            <column name="roomsaunalength" type="string"/>
+            <column name="roomsaunawidth" type="string"/>
+            <column name="roomsecondmasterlength" type="string"/>
+            <column name="roomsecondmasterwidth" type="string"/>
+            <column name="roomsunlength" type="string"/>
+            <column name="roomsunwidth" type="string"/>
+            <column name="roomspalength" type="string"/>
+            <column name="roomspawidth" type="string"/>
+            <column name="roomwinelength" type="string"/>
+            <column name="roomwinewidth" type="string"/>
+            <column name="juniorhighschoolname" type="string"/>
+            <column name="primaryschoolname" type="string"/>
+            <column name="seniorhighschoolname" type="string"/>
+            <column name="associationfee" type="string"/>
+            <column name="associationfeefrequency" type="string"/>
+            <column name="constructionmaterials" type="string"/>
+            <column name="heating" type="string"/>
+            <column name="accessoryunittype" type="string"/>
+            <column name="accessoryunityn" type="string"/>
+            <column name="flooring" type="string"/>
+            <column name="fireplacestotal" type="string"/>
+            <column name="fireplacefeatures" type="string"/>
+            <column name="securitysystemyn" type="string"/>
+            <column name="greenbuildingcertification" type="string"/>
+            <column name="greenenergyefficient" type="string"/>
+            <column name="energysavingfeatures" type="string"/>
+            <column name="lotnumber" type="string"/>
+            <column name="lotsizearea" type="string"/>
+            <column name="lotsizedimensions" type="string"/>
+            <column name="easements" type="string"/>
+            <column name="restrictions" type="string"/>
+            <column name="washerdryerconnections" type="string"/>
+            <column name="municipalutilitydistrictyn" type="string"/>
+            <column name="associationfeeincludes" type="string"/>
+            <column name="associationtype" type="string"/>
+            <column name="barninformation" type="string"/>
+            <column name="constructionmaterialswalls" type="string"/>
+            <column name="countyorparish" type="string"/>
+            <column name="exteriorbuildings" type="string"/>
+            <column name="farmranchfeatures" type="string"/>
+            <column name="fencedyardyn" type="string"/>
+            <column name="financingproposed" type="string"/>
+            <column name="handicapyn" type="string"/>
+            <column name="numberoftanksandponds" type="string"/>
+            <column name="parcelnumber" type="string"/>
+            <column name="virtualtoururlunbranded" type="string"/>
+            <column name="living_room_feature" type="string"/>
+            <column name="master_bed_room_feature" type="string"/>
+            <column name="bed_room_feature" type="string"/>
+            <column name="dining_room_feature" type="string"/>
+            <column name="kitchen_room_feature" type="string"/>
+            <column name="breakfast_room_feature" type="string"/>
+            <column name="study_room_feature" type="string"/>
+            <column name="utility_room_feature" type="string"/>
+            <column name="full_bath_room_feature" type="string"/>
+            <column name="half_bath_room_feature" type="string"/>
+            <column name="exercise_room_feature" type="string"/>
+            <column name="extra_storage_room_feature" type="string"/>
+            <column name="game_room_feature" type="string"/>
+            <column name="guest_room_feature" type="string"/>
+            <column name="library_room_feature" type="string"/>
+            <column name="media_room_feature" type="string"/>
+            <column name="mud_room_feature" type="string"/>
+            <column name="office_room_feature" type="string"/>
+            <column name="sauna_room_feature" type="string"/>
+            <column name="second_master_room_feature" type="string"/>
+            <column name="sunroom_room_feature" type="string"/>
+            <column name="spa_room_feature" type="string"/>
+            <column name="wine_room_feature" type="string"/>
+            <column name="other_room_feature" type="string"/>
+            <column name="is_luxury" type="string"/>
+            <column name="is_move_in_ready" type="string"/>
+            <column name="photo_url" type="string"/>
+            <column name="photo_1_url" type="string"/>
+            <column name="photo_2_url" type="string"/>
+            <column name="photo_3_url" type="string"/>
+            <column name="photo_4_url" type="string"/>
+            <column name="photo_5_url" type="string"/>
+            <column name="photo_6_url" type="string"/>
+            <column name="photo_7_url" type="string"/>
+            <column name="photo_8_url" type="string"/>
+            <column name="photo_9_url" type="string"/>
+            <column name="photo_10_url" type="string"/>
+            <column name="photo_11_url" type="string"/>
+            <column name="photo_12_url" type="string"/>
+            <column name="photo_13_url" type="string"/>
+            <column name="photo_14_url" type="string"/>
+            <column name="photo_15_url" type="string"/>
+            <column name="photo_16_url" type="string"/>
+            <column name="photo_17_url" type="string"/>
+            <column name="photo_18_url" type="string"/>
+            <column name="photo_19_url" type="string"/>
+            <column name="photo_20_url" type="string"/>
+            <column name="photo_21_url" type="string"/>
+            <column name="photo_22_url" type="string"/>
+            <column name="photo_23_url" type="string"/>
+            <column name="photo_24_url" type="string"/>
+            <column name="photo_25_url" type="string"/>
+            <column name="photo_26_url" type="string"/>
+            <column name="photo_27_url" type="string"/>
+            <column name="photo_28_url" type="string"/>
+            <column name="photo_29_url" type="string"/>
+            <column name="photo_30_url" type="string"/>
+            <column name="photo_31_url" type="string"/>
+            <column name="photo_32_url" type="string"/>
+            <column name="photo_33_url" type="string"/>
+            <column name="photo_34_url" type="string"/>
+            <column name="photo_35_url" type="string"/>
+            <column name="photo_36_url" type="string"/>
+            <column name="photo_37_url" type="string"/>
+            <column name="photo_38_url" type="string"/>
+            <column name="photo_39_url" type="string"/>
+            <column name="photo_40_url" type="string"/>
+            <column name="created" type="date"/>
+            <column name="updated" type="date"/>
+            <column name="modified_date" type="date"/>
+            <column name="img_deleted" type="boolean"/>
+            <column name="rets_server" type="string"/>
+            <column name="permalink" type="string"/>
+            <column name="property_tag" type="string"/>
+            <column name="buildentory_views" type="numeric"/>
+            <column name="location" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

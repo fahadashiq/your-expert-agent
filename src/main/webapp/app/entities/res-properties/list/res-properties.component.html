@@ -1,0 +1,640 @@
+<div>
+  <h2 id="page-heading" data-cy="ResPropertiesHeading">
+    <span jhiTranslate="yourExpertAgentApp.resProperties.home.title">Res Properties</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="yourExpertAgentApp.resProperties.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-res-properties"
+        [routerLink]="['/res-properties/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="yourExpertAgentApp.resProperties.home.createLabel"> Create a new Res Properties </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="resProperties?.length === 0">
+    <span jhiTranslate="yourExpertAgentApp.resProperties.home.notFound">No resProperties found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="resProperties && resProperties.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.id">Id</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.communityId">Community Id</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.communityName">Community Name</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.builderId">Builder Id</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.specialOffers">Special Offers</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.brochure">Brochure</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.floorPlanId">Floor Plan Id</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.latitude">Latitude</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.longitude">Longitude</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.county">County</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.heatsystem">Heatsystem</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.liststatus">Liststatus</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.liststatusflag">Liststatusflag</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.carportcap">Carportcap</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.possession">Possession</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.schoolname1">Schoolname 1</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.subdivide">Subdivide</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.vowavmyn">Vowavmyn</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.presentuse">Presentuse</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.proposeduse">Proposeduse</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.ranchname">Ranchname</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roombed2width">Roombed 2 Width</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomdininglevel">Roomdininglevel</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomliving2width">Roomliving 2 Width</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomstudylevel">Roomstudylevel</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.area">Area</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.areatitle">Areatitle</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.assocfee">Assocfee</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.financeproposed">Financeproposed</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.listpriceorig">Listpriceorig</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.mapcoord">Mapcoord</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.schoolname2">Schoolname 2</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomgaragewidth">Roomgaragewidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomkitchendesc">Roomkitchendesc</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomliving1width">Roomliving 1 Width</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomother2width">Roomother 2 Width</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.sqfttotal">Sqfttotal</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.officelistOfficenam1">Officelist Officenam 1</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.schoolname3">Schoolname 3</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.zipcode">Zipcode</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.barn1length">Barn 1 Length</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.barn3width">Barn 3 Width</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roombed2length">Roombed 2 Length</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roombed3length">Roombed 3 Length</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomother1width">Roomother 1 Width</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.agentlistFullname">Agentlist Fullname</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.proptype">Proptype</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.mlsProptype">Mls Proptype</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.schoolname4">Schoolname 4</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.acrescultivated">Acrescultivated</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.barn2length">Barn 2 Length</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.barn2width">Barn 2 Width</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.complexname">Complexname</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roombed4length">Roombed 4 Length</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roombedbathdesc">Roombedbathdesc</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roombreakfastwidth">Roombreakfastwidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomother">Roomother</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomutilitylength">Roomutilitylength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.acres">Acres</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.block">Block</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.directions">Directions</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.subdivision">Subdivision</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.yearbuilt">Yearbuilt</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.yearbuiltdetails">Yearbuiltdetails</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.agexemption">Agexemption</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.barn1width">Barn 1 Width</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.barn3length">Barn 3 Length</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomdiningwidth">Roomdiningwidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomstudywidth">Roomstudywidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.soiltype">Soiltype</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.appraisername">Appraisername</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.listpricelow">Listpricelow</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.mappage">Mappage</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.unitnumber">Unitnumber</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.streetdir">Streetdir</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.streettype">Streettype</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.subarea">Subarea</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.subareatitle">Subareatitle</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.bathshalf">Bathshalf</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomgaragelength">Roomgaragelength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.propsubtype">Propsubtype</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.beds">Beds</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roommasterbedwidth">Roommasterbedwidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomstudylength">Roomstudylength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.agentlist">Agentlist</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.streetname">Streetname</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roombreakfastlength">Roombreakfastlength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomkitchenwidth">Roomkitchenwidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.fence">Fence</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.bathstotal">Bathstotal</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.garagecap">Garagecap</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.sqftprice">Sqftprice</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.style">Style</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.exterior">Exterior</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.foundation">Foundation</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.interior">Interior</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.poolyn">Poolyn</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.poolFeature">Pool Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.listprice">Listprice</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.listpricerange">Listpricerange</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.mlsnum">Mlsnum</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.matrixid">Matrixid</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.remarks">Remarks</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.state">State</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roof">Roof</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.securityfeatures">Securityfeatures</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.utilitiesother">Utilitiesother</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.commonfeatures">Commonfeatures</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.construction">Construction</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.modified">Modified</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.stories">Stories</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomdininglength">Roomdininglength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomliving1length">Roomliving 1 Length</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.openhousetime">Openhousetime</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.openhouseendtime">Openhouseendtime</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomliving2length">Roomliving 2 Length</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.lotdesc">Lotdesc</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.openhousedate">Openhousedate</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roommasterbedlength">Roommasterbedlength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomother1length">Roomother 1 Length</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.officesellOfficenam2">Officesell Officenam 2</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.lotsize">Lotsize</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.streetdirsuffix">Streetdirsuffix</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photocount">Photocount</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.schooldistrict">Schooldistrict</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.streetnum">Streetnum</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.utilities">Utilities</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.equipment">Equipment</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roombed4width">Roombed 4 Width</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomkitchenlength">Roomkitchenlength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.city">City</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.garagedesc">Garagedesc</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.bathsfull">Bathsfull</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roombed3width">Roombed 3 Width</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomutildesc">Roomutildesc</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomutilitywidth">Roomutilitywidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomfullbathlength">Roomfullbathlength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomfullbathwidth">Roomfullbathwidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomhalfbathlength">Roomhalfbathlength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomhalfbathwidth">Roomhalfbathwidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomexerciselength">Roomexerciselength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomexercisewidth">Roomexercisewidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomstoragelength">Roomstoragelength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomstoragewidth">Roomstoragewidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomgamelength">Roomgamelength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomgamewidth">Roomgamewidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomguestlength">Roomguestlength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomguestwidth">Roomguestwidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomlibrarylength">Roomlibrarylength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomlibrarywidth">Roomlibrarywidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roommedialength">Roommedialength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roommediawidth">Roommediawidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roommudlength">Roommudlength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roommudwidth">Roommudwidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomofficelength">Roomofficelength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomofficewidth">Roomofficewidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomsaunalength">Roomsaunalength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomsaunawidth">Roomsaunawidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomsecondmasterlength">Roomsecondmasterlength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomsecondmasterwidth">Roomsecondmasterwidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomsunlength">Roomsunlength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomsunwidth">Roomsunwidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomspalength">Roomspalength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomspawidth">Roomspawidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomwinelength">Roomwinelength</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.roomwinewidth">Roomwinewidth</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.juniorhighschoolname">Juniorhighschoolname</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.primaryschoolname">Primaryschoolname</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.seniorhighschoolname">Seniorhighschoolname</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.associationfee">Associationfee</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.associationfeefrequency">Associationfeefrequency</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.constructionmaterials">Constructionmaterials</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.heating">Heating</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.accessoryunittype">Accessoryunittype</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.accessoryunityn">Accessoryunityn</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.flooring">Flooring</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.fireplacestotal">Fireplacestotal</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.fireplacefeatures">Fireplacefeatures</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.securitysystemyn">Securitysystemyn</span></th>
+          <th scope="col">
+            <span jhiTranslate="yourExpertAgentApp.resProperties.greenbuildingcertification">Greenbuildingcertification</span>
+          </th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.greenenergyefficient">Greenenergyefficient</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.energysavingfeatures">Energysavingfeatures</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.lotnumber">Lotnumber</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.lotsizearea">Lotsizearea</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.lotsizedimensions">Lotsizedimensions</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.easements">Easements</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.restrictions">Restrictions</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.washerdryerconnections">Washerdryerconnections</span></th>
+          <th scope="col">
+            <span jhiTranslate="yourExpertAgentApp.resProperties.municipalutilitydistrictyn">Municipalutilitydistrictyn</span>
+          </th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.associationfeeincludes">Associationfeeincludes</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.associationtype">Associationtype</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.barninformation">Barninformation</span></th>
+          <th scope="col">
+            <span jhiTranslate="yourExpertAgentApp.resProperties.constructionmaterialswalls">Constructionmaterialswalls</span>
+          </th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.countyorparish">Countyorparish</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.exteriorbuildings">Exteriorbuildings</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.farmranchfeatures">Farmranchfeatures</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.fencedyardyn">Fencedyardyn</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.financingproposed">Financingproposed</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.handicapyn">Handicapyn</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.numberoftanksandponds">Numberoftanksandponds</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.parcelnumber">Parcelnumber</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.virtualtoururlunbranded">Virtualtoururlunbranded</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.livingRoomFeature">Living Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.masterBedRoomFeature">Master Bed Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.bedRoomFeature">Bed Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.diningRoomFeature">Dining Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.kitchenRoomFeature">Kitchen Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.breakfastRoomFeature">Breakfast Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.studyRoomFeature">Study Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.utilityRoomFeature">Utility Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.fullBathRoomFeature">Full Bath Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.halfBathRoomFeature">Half Bath Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.exerciseRoomFeature">Exercise Room Feature</span></th>
+          <th scope="col">
+            <span jhiTranslate="yourExpertAgentApp.resProperties.extraStorageRoomFeature">Extra Storage Room Feature</span>
+          </th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.gameRoomFeature">Game Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.guestRoomFeature">Guest Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.libraryRoomFeature">Library Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.mediaRoomFeature">Media Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.mudRoomFeature">Mud Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.officeRoomFeature">Office Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.saunaRoomFeature">Sauna Room Feature</span></th>
+          <th scope="col">
+            <span jhiTranslate="yourExpertAgentApp.resProperties.secondMasterRoomFeature">Second Master Room Feature</span>
+          </th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.sunroomRoomFeature">Sunroom Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.spaRoomFeature">Spa Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.wineRoomFeature">Wine Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.otherRoomFeature">Other Room Feature</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.isLuxury">Is Luxury</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.isMoveInReady">Is Move In Ready</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photoUrl">Photo Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo1Url">Photo 1 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo2Url">Photo 2 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo3Url">Photo 3 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo4Url">Photo 4 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo5Url">Photo 5 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo6Url">Photo 6 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo7Url">Photo 7 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo8Url">Photo 8 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo9Url">Photo 9 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo10Url">Photo 10 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo11Url">Photo 11 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo12Url">Photo 12 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo13Url">Photo 13 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo14Url">Photo 14 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo15Url">Photo 15 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo16Url">Photo 16 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo17Url">Photo 17 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo18Url">Photo 18 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo19Url">Photo 19 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo20Url">Photo 20 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo21Url">Photo 21 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo22Url">Photo 22 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo23Url">Photo 23 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo24Url">Photo 24 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo25Url">Photo 25 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo26Url">Photo 26 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo27Url">Photo 27 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo28Url">Photo 28 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo29Url">Photo 29 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo30Url">Photo 30 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo31Url">Photo 31 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo32Url">Photo 32 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo33Url">Photo 33 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo34Url">Photo 34 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo35Url">Photo 35 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo36Url">Photo 36 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo37Url">Photo 37 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo38Url">Photo 38 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo39Url">Photo 39 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.photo40Url">Photo 40 Url</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.created">Created</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.updated">Updated</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.modifiedDate">Modified Date</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.imgDeleted">Img Deleted</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.retsServer">Rets Server</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.permalink">Permalink</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.propertyTag">Property Tag</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.buildentoryViews">Buildentory Views</span></th>
+          <th scope="col"><span jhiTranslate="yourExpertAgentApp.resProperties.location">Location</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resProperties of resProperties; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/res-properties', resProperties.id, 'view']">{{ resProperties.id }}</a>
+          </td>
+          <td>{{ resProperties.communityId }}</td>
+          <td>{{ resProperties.communityName }}</td>
+          <td>{{ resProperties.builderId }}</td>
+          <td>{{ resProperties.specialOffers }}</td>
+          <td>{{ resProperties.brochure }}</td>
+          <td>{{ resProperties.floorPlanId }}</td>
+          <td>{{ resProperties.latitude }}</td>
+          <td>{{ resProperties.longitude }}</td>
+          <td>{{ resProperties.county }}</td>
+          <td>{{ resProperties.heatsystem }}</td>
+          <td>{{ resProperties.liststatus }}</td>
+          <td>{{ resProperties.liststatusflag }}</td>
+          <td>{{ resProperties.carportcap }}</td>
+          <td>{{ resProperties.possession }}</td>
+          <td>{{ resProperties.schoolname1 }}</td>
+          <td>{{ resProperties.subdivide }}</td>
+          <td>{{ resProperties.vowavmyn }}</td>
+          <td>{{ resProperties.presentuse }}</td>
+          <td>{{ resProperties.proposeduse }}</td>
+          <td>{{ resProperties.ranchname }}</td>
+          <td>{{ resProperties.roombed2width }}</td>
+          <td>{{ resProperties.roomdininglevel }}</td>
+          <td>{{ resProperties.roomliving2width }}</td>
+          <td>{{ resProperties.roomstudylevel }}</td>
+          <td>{{ resProperties.area }}</td>
+          <td>{{ resProperties.areatitle }}</td>
+          <td>{{ resProperties.assocfee }}</td>
+          <td>{{ resProperties.financeproposed }}</td>
+          <td>{{ resProperties.listpriceorig }}</td>
+          <td>{{ resProperties.mapcoord }}</td>
+          <td>{{ resProperties.schoolname2 }}</td>
+          <td>{{ resProperties.roomgaragewidth }}</td>
+          <td>{{ resProperties.roomkitchendesc }}</td>
+          <td>{{ resProperties.roomliving1width }}</td>
+          <td>{{ resProperties.roomother2width }}</td>
+          <td>{{ resProperties.sqfttotal }}</td>
+          <td>{{ resProperties.officelistOfficenam1 }}</td>
+          <td>{{ resProperties.schoolname3 }}</td>
+          <td>{{ resProperties.zipcode }}</td>
+          <td>{{ resProperties.barn1length }}</td>
+          <td>{{ resProperties.barn3width }}</td>
+          <td>{{ resProperties.roombed2length }}</td>
+          <td>{{ resProperties.roombed3length }}</td>
+          <td>{{ resProperties.roomother1width }}</td>
+          <td>{{ resProperties.agentlistFullname }}</td>
+          <td>{{ resProperties.proptype }}</td>
+          <td>{{ resProperties.mlsProptype }}</td>
+          <td>{{ resProperties.schoolname4 }}</td>
+          <td>{{ resProperties.acrescultivated }}</td>
+          <td>{{ resProperties.barn2length }}</td>
+          <td>{{ resProperties.barn2width }}</td>
+          <td>{{ resProperties.complexname }}</td>
+          <td>{{ resProperties.roombed4length }}</td>
+          <td>{{ resProperties.roombedbathdesc }}</td>
+          <td>{{ resProperties.roombreakfastwidth }}</td>
+          <td>{{ resProperties.roomother }}</td>
+          <td>{{ resProperties.roomutilitylength }}</td>
+          <td>{{ resProperties.acres }}</td>
+          <td>{{ resProperties.block }}</td>
+          <td>{{ resProperties.directions }}</td>
+          <td>{{ resProperties.subdivision }}</td>
+          <td>{{ resProperties.yearbuilt }}</td>
+          <td>{{ resProperties.yearbuiltdetails }}</td>
+          <td>{{ resProperties.agexemption }}</td>
+          <td>{{ resProperties.barn1width }}</td>
+          <td>{{ resProperties.barn3length }}</td>
+          <td>{{ resProperties.roomdiningwidth }}</td>
+          <td>{{ resProperties.roomstudywidth }}</td>
+          <td>{{ resProperties.soiltype }}</td>
+          <td>{{ resProperties.appraisername }}</td>
+          <td>{{ resProperties.listpricelow }}</td>
+          <td>{{ resProperties.mappage }}</td>
+          <td>{{ resProperties.unitnumber }}</td>
+          <td>{{ resProperties.streetdir }}</td>
+          <td>{{ resProperties.streettype }}</td>
+          <td>{{ resProperties.subarea }}</td>
+          <td>{{ resProperties.subareatitle }}</td>
+          <td>{{ resProperties.bathshalf }}</td>
+          <td>{{ resProperties.roomgaragelength }}</td>
+          <td>{{ resProperties.propsubtype }}</td>
+          <td>{{ resProperties.beds }}</td>
+          <td>{{ resProperties.roommasterbedwidth }}</td>
+          <td>{{ resProperties.roomstudylength }}</td>
+          <td>{{ resProperties.agentlist }}</td>
+          <td>{{ resProperties.streetname }}</td>
+          <td>{{ resProperties.roombreakfastlength }}</td>
+          <td>{{ resProperties.roomkitchenwidth }}</td>
+          <td>{{ resProperties.fence }}</td>
+          <td>{{ resProperties.bathstotal }}</td>
+          <td>{{ resProperties.garagecap }}</td>
+          <td>{{ resProperties.sqftprice }}</td>
+          <td>{{ resProperties.style }}</td>
+          <td>{{ resProperties.exterior }}</td>
+          <td>{{ resProperties.foundation }}</td>
+          <td>{{ resProperties.interior }}</td>
+          <td>{{ resProperties.poolyn }}</td>
+          <td>{{ resProperties.poolFeature }}</td>
+          <td>{{ resProperties.listprice }}</td>
+          <td>{{ resProperties.listpricerange }}</td>
+          <td>{{ resProperties.mlsnum }}</td>
+          <td>{{ resProperties.matrixid }}</td>
+          <td>{{ resProperties.remarks }}</td>
+          <td>{{ resProperties.state }}</td>
+          <td>{{ resProperties.roof }}</td>
+          <td>{{ resProperties.securityfeatures }}</td>
+          <td>{{ resProperties.utilitiesother }}</td>
+          <td>{{ resProperties.commonfeatures }}</td>
+          <td>{{ resProperties.construction }}</td>
+          <td>{{ resProperties.modified | formatMediumDatetime }}</td>
+          <td>{{ resProperties.stories }}</td>
+          <td>{{ resProperties.roomdininglength }}</td>
+          <td>{{ resProperties.roomliving1length }}</td>
+          <td>{{ resProperties.openhousetime }}</td>
+          <td>{{ resProperties.openhouseendtime }}</td>
+          <td>{{ resProperties.roomliving2length }}</td>
+          <td>{{ resProperties.lotdesc }}</td>
+          <td>{{ resProperties.openhousedate | formatMediumDatetime }}</td>
+          <td>{{ resProperties.roommasterbedlength }}</td>
+          <td>{{ resProperties.roomother1length }}</td>
+          <td>{{ resProperties.officesellOfficenam2 }}</td>
+          <td>{{ resProperties.lotsize }}</td>
+          <td>{{ resProperties.streetdirsuffix }}</td>
+          <td>{{ resProperties.photocount }}</td>
+          <td>{{ resProperties.schooldistrict }}</td>
+          <td>{{ resProperties.streetnum }}</td>
+          <td>{{ resProperties.utilities }}</td>
+          <td>{{ resProperties.equipment }}</td>
+          <td>{{ resProperties.roombed4width }}</td>
+          <td>{{ resProperties.roomkitchenlength }}</td>
+          <td>{{ resProperties.city }}</td>
+          <td>{{ resProperties.garagedesc }}</td>
+          <td>{{ resProperties.bathsfull }}</td>
+          <td>{{ resProperties.roombed3width }}</td>
+          <td>{{ resProperties.roomutildesc }}</td>
+          <td>{{ resProperties.roomutilitywidth }}</td>
+          <td>{{ resProperties.roomfullbathlength }}</td>
+          <td>{{ resProperties.roomfullbathwidth }}</td>
+          <td>{{ resProperties.roomhalfbathlength }}</td>
+          <td>{{ resProperties.roomhalfbathwidth }}</td>
+          <td>{{ resProperties.roomexerciselength }}</td>
+          <td>{{ resProperties.roomexercisewidth }}</td>
+          <td>{{ resProperties.roomstoragelength }}</td>
+          <td>{{ resProperties.roomstoragewidth }}</td>
+          <td>{{ resProperties.roomgamelength }}</td>
+          <td>{{ resProperties.roomgamewidth }}</td>
+          <td>{{ resProperties.roomguestlength }}</td>
+          <td>{{ resProperties.roomguestwidth }}</td>
+          <td>{{ resProperties.roomlibrarylength }}</td>
+          <td>{{ resProperties.roomlibrarywidth }}</td>
+          <td>{{ resProperties.roommedialength }}</td>
+          <td>{{ resProperties.roommediawidth }}</td>
+          <td>{{ resProperties.roommudlength }}</td>
+          <td>{{ resProperties.roommudwidth }}</td>
+          <td>{{ resProperties.roomofficelength }}</td>
+          <td>{{ resProperties.roomofficewidth }}</td>
+          <td>{{ resProperties.roomsaunalength }}</td>
+          <td>{{ resProperties.roomsaunawidth }}</td>
+          <td>{{ resProperties.roomsecondmasterlength }}</td>
+          <td>{{ resProperties.roomsecondmasterwidth }}</td>
+          <td>{{ resProperties.roomsunlength }}</td>
+          <td>{{ resProperties.roomsunwidth }}</td>
+          <td>{{ resProperties.roomspalength }}</td>
+          <td>{{ resProperties.roomspawidth }}</td>
+          <td>{{ resProperties.roomwinelength }}</td>
+          <td>{{ resProperties.roomwinewidth }}</td>
+          <td>{{ resProperties.juniorhighschoolname }}</td>
+          <td>{{ resProperties.primaryschoolname }}</td>
+          <td>{{ resProperties.seniorhighschoolname }}</td>
+          <td>{{ resProperties.associationfee }}</td>
+          <td>{{ resProperties.associationfeefrequency }}</td>
+          <td>{{ resProperties.constructionmaterials }}</td>
+          <td>{{ resProperties.heating }}</td>
+          <td>{{ resProperties.accessoryunittype }}</td>
+          <td>{{ resProperties.accessoryunityn }}</td>
+          <td>{{ resProperties.flooring }}</td>
+          <td>{{ resProperties.fireplacestotal }}</td>
+          <td>{{ resProperties.fireplacefeatures }}</td>
+          <td>{{ resProperties.securitysystemyn }}</td>
+          <td>{{ resProperties.greenbuildingcertification }}</td>
+          <td>{{ resProperties.greenenergyefficient }}</td>
+          <td>{{ resProperties.energysavingfeatures }}</td>
+          <td>{{ resProperties.lotnumber }}</td>
+          <td>{{ resProperties.lotsizearea }}</td>
+          <td>{{ resProperties.lotsizedimensions }}</td>
+          <td>{{ resProperties.easements }}</td>
+          <td>{{ resProperties.restrictions }}</td>
+          <td>{{ resProperties.washerdryerconnections }}</td>
+          <td>{{ resProperties.municipalutilitydistrictyn }}</td>
+          <td>{{ resProperties.associationfeeincludes }}</td>
+          <td>{{ resProperties.associationtype }}</td>
+          <td>{{ resProperties.barninformation }}</td>
+          <td>{{ resProperties.constructionmaterialswalls }}</td>
+          <td>{{ resProperties.countyorparish }}</td>
+          <td>{{ resProperties.exteriorbuildings }}</td>
+          <td>{{ resProperties.farmranchfeatures }}</td>
+          <td>{{ resProperties.fencedyardyn }}</td>
+          <td>{{ resProperties.financingproposed }}</td>
+          <td>{{ resProperties.handicapyn }}</td>
+          <td>{{ resProperties.numberoftanksandponds }}</td>
+          <td>{{ resProperties.parcelnumber }}</td>
+          <td>{{ resProperties.virtualtoururlunbranded }}</td>
+          <td>{{ resProperties.livingRoomFeature }}</td>
+          <td>{{ resProperties.masterBedRoomFeature }}</td>
+          <td>{{ resProperties.bedRoomFeature }}</td>
+          <td>{{ resProperties.diningRoomFeature }}</td>
+          <td>{{ resProperties.kitchenRoomFeature }}</td>
+          <td>{{ resProperties.breakfastRoomFeature }}</td>
+          <td>{{ resProperties.studyRoomFeature }}</td>
+          <td>{{ resProperties.utilityRoomFeature }}</td>
+          <td>{{ resProperties.fullBathRoomFeature }}</td>
+          <td>{{ resProperties.halfBathRoomFeature }}</td>
+          <td>{{ resProperties.exerciseRoomFeature }}</td>
+          <td>{{ resProperties.extraStorageRoomFeature }}</td>
+          <td>{{ resProperties.gameRoomFeature }}</td>
+          <td>{{ resProperties.guestRoomFeature }}</td>
+          <td>{{ resProperties.libraryRoomFeature }}</td>
+          <td>{{ resProperties.mediaRoomFeature }}</td>
+          <td>{{ resProperties.mudRoomFeature }}</td>
+          <td>{{ resProperties.officeRoomFeature }}</td>
+          <td>{{ resProperties.saunaRoomFeature }}</td>
+          <td>{{ resProperties.secondMasterRoomFeature }}</td>
+          <td>{{ resProperties.sunroomRoomFeature }}</td>
+          <td>{{ resProperties.spaRoomFeature }}</td>
+          <td>{{ resProperties.wineRoomFeature }}</td>
+          <td>{{ resProperties.otherRoomFeature }}</td>
+          <td>{{ resProperties.isLuxury }}</td>
+          <td>{{ resProperties.isMoveInReady }}</td>
+          <td>{{ resProperties.photoUrl }}</td>
+          <td>{{ resProperties.photo1Url }}</td>
+          <td>{{ resProperties.photo2Url }}</td>
+          <td>{{ resProperties.photo3Url }}</td>
+          <td>{{ resProperties.photo4Url }}</td>
+          <td>{{ resProperties.photo5Url }}</td>
+          <td>{{ resProperties.photo6Url }}</td>
+          <td>{{ resProperties.photo7Url }}</td>
+          <td>{{ resProperties.photo8Url }}</td>
+          <td>{{ resProperties.photo9Url }}</td>
+          <td>{{ resProperties.photo10Url }}</td>
+          <td>{{ resProperties.photo11Url }}</td>
+          <td>{{ resProperties.photo12Url }}</td>
+          <td>{{ resProperties.photo13Url }}</td>
+          <td>{{ resProperties.photo14Url }}</td>
+          <td>{{ resProperties.photo15Url }}</td>
+          <td>{{ resProperties.photo16Url }}</td>
+          <td>{{ resProperties.photo17Url }}</td>
+          <td>{{ resProperties.photo18Url }}</td>
+          <td>{{ resProperties.photo19Url }}</td>
+          <td>{{ resProperties.photo20Url }}</td>
+          <td>{{ resProperties.photo21Url }}</td>
+          <td>{{ resProperties.photo22Url }}</td>
+          <td>{{ resProperties.photo23Url }}</td>
+          <td>{{ resProperties.photo24Url }}</td>
+          <td>{{ resProperties.photo25Url }}</td>
+          <td>{{ resProperties.photo26Url }}</td>
+          <td>{{ resProperties.photo27Url }}</td>
+          <td>{{ resProperties.photo28Url }}</td>
+          <td>{{ resProperties.photo29Url }}</td>
+          <td>{{ resProperties.photo30Url }}</td>
+          <td>{{ resProperties.photo31Url }}</td>
+          <td>{{ resProperties.photo32Url }}</td>
+          <td>{{ resProperties.photo33Url }}</td>
+          <td>{{ resProperties.photo34Url }}</td>
+          <td>{{ resProperties.photo35Url }}</td>
+          <td>{{ resProperties.photo36Url }}</td>
+          <td>{{ resProperties.photo37Url }}</td>
+          <td>{{ resProperties.photo38Url }}</td>
+          <td>{{ resProperties.photo39Url }}</td>
+          <td>{{ resProperties.photo40Url }}</td>
+          <td>{{ resProperties.created | formatMediumDatetime }}</td>
+          <td>{{ resProperties.updated | formatMediumDatetime }}</td>
+          <td>{{ resProperties.modifiedDate | formatMediumDatetime }}</td>
+          <td>{{ resProperties.imgDeleted }}</td>
+          <td>{{ resProperties.retsServer }}</td>
+          <td>{{ resProperties.permalink }}</td>
+          <td>{{ resProperties.propertyTag }}</td>
+          <td>{{ resProperties.buildentoryViews }}</td>
+          <td>{{ resProperties.location }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/res-properties', resProperties.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/res-properties', resProperties.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(resProperties)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

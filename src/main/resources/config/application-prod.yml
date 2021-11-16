@@ -33,7 +33,7 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://yourexpertagent.cfqarc3jybyh.us-east-2.rds.amazonaws.com:3306/YourExpertAgent?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    url: jdbc:mysql://yourexpertagent.cfqarc3jybyh.us-east-2.rds.amazonaws.com:3306/YourExpertAgent?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&zeroDateTimeBehavior=convertToNull
     username: admin
     password: admin123
     hikari:
