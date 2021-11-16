@@ -100,7 +100,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()
             .httpBasic()
         .and()
-            .apply(securityConfigurerAdapter());
+            .apply(securityConfigurerAdapter())
+        .and()
+        .headers().frameOptions().disable();
         // @formatter:on
     }
 
