@@ -11,6 +11,9 @@ const resPropertiesRoute: Routes = [
   {
     path: '',
     component: ResPropertiesComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
     canActivate: [UserRouteAccessService],
   },
   {

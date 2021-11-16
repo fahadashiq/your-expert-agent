@@ -9,6 +9,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.hsrw.yea.IntegrationTest;
 import com.hsrw.yea.domain.ResProperties;
 import com.hsrw.yea.repository.ResPropertiesRepository;
+import com.hsrw.yea.service.dto.ResPropertiesDTO;
+import com.hsrw.yea.service.mapper.ResPropertiesMapper;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -874,6 +876,9 @@ class ResPropertiesResourceIT {
     private ResPropertiesRepository resPropertiesRepository;
 
     @Autowired
+    private ResPropertiesMapper resPropertiesMapper;
+
+    @Autowired
     private EntityManager em;
 
     @Autowired
@@ -1467,8 +1472,11 @@ class ResPropertiesResourceIT {
     void createResProperties() throws Exception {
         int databaseSizeBeforeCreate = resPropertiesRepository.findAll().size();
         // Create the ResProperties
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isCreated());
 
         // Validate the ResProperties in the database
@@ -1759,12 +1767,15 @@ class ResPropertiesResourceIT {
     void createResPropertiesWithExistingId() throws Exception {
         // Create the ResProperties with an existing ID
         resProperties.setId(1L);
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         int databaseSizeBeforeCreate = resPropertiesRepository.findAll().size();
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         // Validate the ResProperties in the database
@@ -1780,9 +1791,12 @@ class ResPropertiesResourceIT {
         resProperties.setCommunityId(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1797,9 +1811,12 @@ class ResPropertiesResourceIT {
         resProperties.setCommunityName(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1814,9 +1831,12 @@ class ResPropertiesResourceIT {
         resProperties.setBuilderId(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1831,9 +1851,12 @@ class ResPropertiesResourceIT {
         resProperties.setSpecialOffers(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1848,9 +1871,12 @@ class ResPropertiesResourceIT {
         resProperties.setBrochure(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1865,9 +1891,12 @@ class ResPropertiesResourceIT {
         resProperties.setFloorPlanId(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1882,9 +1911,12 @@ class ResPropertiesResourceIT {
         resProperties.setMlsProptype(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1899,9 +1931,12 @@ class ResPropertiesResourceIT {
         resProperties.setYearbuiltdetails(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1916,9 +1951,12 @@ class ResPropertiesResourceIT {
         resProperties.setUnitnumber(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1933,9 +1971,12 @@ class ResPropertiesResourceIT {
         resProperties.setPoolFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1950,9 +1991,12 @@ class ResPropertiesResourceIT {
         resProperties.setMlsnum(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1967,9 +2011,12 @@ class ResPropertiesResourceIT {
         resProperties.setMatrixid(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -1984,9 +2031,12 @@ class ResPropertiesResourceIT {
         resProperties.setSecurityfeatures(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2001,9 +2051,12 @@ class ResPropertiesResourceIT {
         resProperties.setUtilitiesother(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2018,9 +2071,12 @@ class ResPropertiesResourceIT {
         resProperties.setModified(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2035,9 +2091,12 @@ class ResPropertiesResourceIT {
         resProperties.setOpenhouseendtime(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2052,9 +2111,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomfullbathlength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2069,9 +2131,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomfullbathwidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2086,9 +2151,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomhalfbathlength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2103,9 +2171,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomhalfbathwidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2120,9 +2191,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomexerciselength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2137,9 +2211,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomexercisewidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2154,9 +2231,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomstoragelength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2171,9 +2251,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomstoragewidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2188,9 +2271,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomgamelength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2205,9 +2291,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomgamewidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2222,9 +2311,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomguestlength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2239,9 +2331,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomguestwidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2256,9 +2351,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomlibrarylength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2273,9 +2371,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomlibrarywidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2290,9 +2391,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoommedialength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2307,9 +2411,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoommediawidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2324,9 +2431,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoommudlength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2341,9 +2451,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoommudwidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2358,9 +2471,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomofficelength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2375,9 +2491,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomofficewidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2392,9 +2511,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomsaunalength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2409,9 +2531,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomsaunawidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2426,9 +2551,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomsecondmasterlength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2443,9 +2571,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomsecondmasterwidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2460,9 +2591,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomsunlength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2477,9 +2611,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomsunwidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2494,9 +2631,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomspalength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2511,9 +2651,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomspawidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2528,9 +2671,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomwinelength(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2545,9 +2691,12 @@ class ResPropertiesResourceIT {
         resProperties.setRoomwinewidth(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2562,9 +2711,12 @@ class ResPropertiesResourceIT {
         resProperties.setJuniorhighschoolname(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2579,9 +2731,12 @@ class ResPropertiesResourceIT {
         resProperties.setPrimaryschoolname(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2596,9 +2751,12 @@ class ResPropertiesResourceIT {
         resProperties.setSeniorhighschoolname(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2613,9 +2771,12 @@ class ResPropertiesResourceIT {
         resProperties.setAssociationfee(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2630,9 +2791,12 @@ class ResPropertiesResourceIT {
         resProperties.setAssociationfeefrequency(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2647,9 +2811,12 @@ class ResPropertiesResourceIT {
         resProperties.setConstructionmaterials(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2664,9 +2831,12 @@ class ResPropertiesResourceIT {
         resProperties.setHeating(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2681,9 +2851,12 @@ class ResPropertiesResourceIT {
         resProperties.setAccessoryunittype(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2698,9 +2871,12 @@ class ResPropertiesResourceIT {
         resProperties.setAccessoryunityn(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2715,9 +2891,12 @@ class ResPropertiesResourceIT {
         resProperties.setFlooring(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2732,9 +2911,12 @@ class ResPropertiesResourceIT {
         resProperties.setFireplacestotal(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2749,9 +2931,12 @@ class ResPropertiesResourceIT {
         resProperties.setFireplacefeatures(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2766,9 +2951,12 @@ class ResPropertiesResourceIT {
         resProperties.setSecuritysystemyn(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2783,9 +2971,12 @@ class ResPropertiesResourceIT {
         resProperties.setGreenbuildingcertification(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2800,9 +2991,12 @@ class ResPropertiesResourceIT {
         resProperties.setGreenenergyefficient(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2817,9 +3011,12 @@ class ResPropertiesResourceIT {
         resProperties.setEnergysavingfeatures(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2834,9 +3031,12 @@ class ResPropertiesResourceIT {
         resProperties.setLotnumber(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2851,9 +3051,12 @@ class ResPropertiesResourceIT {
         resProperties.setLotsizearea(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2868,9 +3071,12 @@ class ResPropertiesResourceIT {
         resProperties.setLotsizedimensions(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2885,9 +3091,12 @@ class ResPropertiesResourceIT {
         resProperties.setEasements(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2902,9 +3111,12 @@ class ResPropertiesResourceIT {
         resProperties.setRestrictions(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2919,9 +3131,12 @@ class ResPropertiesResourceIT {
         resProperties.setWasherdryerconnections(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2936,9 +3151,12 @@ class ResPropertiesResourceIT {
         resProperties.setMunicipalutilitydistrictyn(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2953,9 +3171,12 @@ class ResPropertiesResourceIT {
         resProperties.setAssociationfeeincludes(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2970,9 +3191,12 @@ class ResPropertiesResourceIT {
         resProperties.setAssociationtype(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -2987,9 +3211,12 @@ class ResPropertiesResourceIT {
         resProperties.setBarninformation(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3004,9 +3231,12 @@ class ResPropertiesResourceIT {
         resProperties.setConstructionmaterialswalls(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3021,9 +3251,12 @@ class ResPropertiesResourceIT {
         resProperties.setCountyorparish(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3038,9 +3271,12 @@ class ResPropertiesResourceIT {
         resProperties.setExteriorbuildings(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3055,9 +3291,12 @@ class ResPropertiesResourceIT {
         resProperties.setFarmranchfeatures(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3072,9 +3311,12 @@ class ResPropertiesResourceIT {
         resProperties.setFencedyardyn(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3089,9 +3331,12 @@ class ResPropertiesResourceIT {
         resProperties.setFinancingproposed(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3106,9 +3351,12 @@ class ResPropertiesResourceIT {
         resProperties.setHandicapyn(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3123,9 +3371,12 @@ class ResPropertiesResourceIT {
         resProperties.setNumberoftanksandponds(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3140,9 +3391,12 @@ class ResPropertiesResourceIT {
         resProperties.setParcelnumber(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3157,9 +3411,12 @@ class ResPropertiesResourceIT {
         resProperties.setVirtualtoururlunbranded(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3174,9 +3431,12 @@ class ResPropertiesResourceIT {
         resProperties.setLivingRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3191,9 +3451,12 @@ class ResPropertiesResourceIT {
         resProperties.setMasterBedRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3208,9 +3471,12 @@ class ResPropertiesResourceIT {
         resProperties.setBedRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3225,9 +3491,12 @@ class ResPropertiesResourceIT {
         resProperties.setDiningRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3242,9 +3511,12 @@ class ResPropertiesResourceIT {
         resProperties.setKitchenRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3259,9 +3531,12 @@ class ResPropertiesResourceIT {
         resProperties.setBreakfastRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3276,9 +3551,12 @@ class ResPropertiesResourceIT {
         resProperties.setStudyRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3293,9 +3571,12 @@ class ResPropertiesResourceIT {
         resProperties.setUtilityRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3310,9 +3591,12 @@ class ResPropertiesResourceIT {
         resProperties.setFullBathRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3327,9 +3611,12 @@ class ResPropertiesResourceIT {
         resProperties.setHalfBathRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3344,9 +3631,12 @@ class ResPropertiesResourceIT {
         resProperties.setExerciseRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3361,9 +3651,12 @@ class ResPropertiesResourceIT {
         resProperties.setExtraStorageRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3378,9 +3671,12 @@ class ResPropertiesResourceIT {
         resProperties.setGameRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3395,9 +3691,12 @@ class ResPropertiesResourceIT {
         resProperties.setGuestRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3412,9 +3711,12 @@ class ResPropertiesResourceIT {
         resProperties.setLibraryRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3429,9 +3731,12 @@ class ResPropertiesResourceIT {
         resProperties.setMediaRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3446,9 +3751,12 @@ class ResPropertiesResourceIT {
         resProperties.setMudRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3463,9 +3771,12 @@ class ResPropertiesResourceIT {
         resProperties.setOfficeRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3480,9 +3791,12 @@ class ResPropertiesResourceIT {
         resProperties.setSaunaRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3497,9 +3811,12 @@ class ResPropertiesResourceIT {
         resProperties.setSecondMasterRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3514,9 +3831,12 @@ class ResPropertiesResourceIT {
         resProperties.setSunroomRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3531,9 +3851,12 @@ class ResPropertiesResourceIT {
         resProperties.setSpaRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3548,9 +3871,12 @@ class ResPropertiesResourceIT {
         resProperties.setWineRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3565,9 +3891,12 @@ class ResPropertiesResourceIT {
         resProperties.setOtherRoomFeature(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3582,9 +3911,12 @@ class ResPropertiesResourceIT {
         resProperties.setIsLuxury(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3599,9 +3931,12 @@ class ResPropertiesResourceIT {
         resProperties.setIsMoveInReady(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3616,9 +3951,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto1Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3633,9 +3971,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto2Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3650,9 +3991,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto3Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3667,9 +4011,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto4Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3684,9 +4031,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto5Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3701,9 +4051,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto6Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3718,9 +4071,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto7Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3735,9 +4091,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto8Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3752,9 +4111,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto9Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3769,9 +4131,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto10Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3786,9 +4151,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto11Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3803,9 +4171,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto12Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3820,9 +4191,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto13Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3837,9 +4211,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto14Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3854,9 +4231,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto15Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3871,9 +4251,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto16Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3888,9 +4271,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto17Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3905,9 +4291,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto18Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3922,9 +4311,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto19Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3939,9 +4331,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto20Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3956,9 +4351,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto21Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3973,9 +4371,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto22Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -3990,9 +4391,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto23Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4007,9 +4411,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto24Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4024,9 +4431,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto25Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4041,9 +4451,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto26Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4058,9 +4471,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto27Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4075,9 +4491,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto28Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4092,9 +4511,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto29Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4109,9 +4531,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto30Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4126,9 +4551,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto31Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4143,9 +4571,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto32Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4160,9 +4591,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto33Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4177,9 +4611,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto34Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4194,9 +4631,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto35Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4211,9 +4651,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto36Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4228,9 +4671,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto37Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4245,9 +4691,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto38Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4262,9 +4711,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto39Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4279,9 +4731,12 @@ class ResPropertiesResourceIT {
         resProperties.setPhoto40Url(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4296,9 +4751,12 @@ class ResPropertiesResourceIT {
         resProperties.setUpdated(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4313,9 +4771,12 @@ class ResPropertiesResourceIT {
         resProperties.setModifiedDate(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4330,9 +4791,12 @@ class ResPropertiesResourceIT {
         resProperties.setImgDeleted(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4347,9 +4811,12 @@ class ResPropertiesResourceIT {
         resProperties.setPermalink(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4364,9 +4831,12 @@ class ResPropertiesResourceIT {
         resProperties.setPropertyTag(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4381,9 +4851,12 @@ class ResPropertiesResourceIT {
         resProperties.setBuildentoryViews(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -4398,9 +4871,12 @@ class ResPropertiesResourceIT {
         resProperties.setLocation(null);
 
         // Create the ResProperties, which fails.
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
 
         restResPropertiesMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isBadRequest());
 
         List<ResProperties> resPropertiesList = resPropertiesRepository.findAll();
@@ -5286,12 +5762,13 @@ class ResPropertiesResourceIT {
             .propertyTag(UPDATED_PROPERTY_TAG)
             .buildentoryViews(UPDATED_BUILDENTORY_VIEWS)
             .location(UPDATED_LOCATION);
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(updatedResProperties);
 
         restResPropertiesMockMvc
             .perform(
-                put(ENTITY_API_URL_ID, updatedResProperties.getId())
+                put(ENTITY_API_URL_ID, resPropertiesDTO.getId())
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(TestUtil.convertObjectToJsonBytes(updatedResProperties))
+                    .content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
             )
             .andExpect(status().isOk());
 
@@ -5584,12 +6061,15 @@ class ResPropertiesResourceIT {
         int databaseSizeBeforeUpdate = resPropertiesRepository.findAll().size();
         resProperties.setId(count.incrementAndGet());
 
+        // Create the ResProperties
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
+
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restResPropertiesMockMvc
             .perform(
-                put(ENTITY_API_URL_ID, resProperties.getId())
+                put(ENTITY_API_URL_ID, resPropertiesDTO.getId())
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(TestUtil.convertObjectToJsonBytes(resProperties))
+                    .content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
             )
             .andExpect(status().isBadRequest());
 
@@ -5604,12 +6084,15 @@ class ResPropertiesResourceIT {
         int databaseSizeBeforeUpdate = resPropertiesRepository.findAll().size();
         resProperties.setId(count.incrementAndGet());
 
+        // Create the ResProperties
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
+
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
         restResPropertiesMockMvc
             .perform(
                 put(ENTITY_API_URL_ID, count.incrementAndGet())
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(TestUtil.convertObjectToJsonBytes(resProperties))
+                    .content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
             )
             .andExpect(status().isBadRequest());
 
@@ -5624,9 +6107,14 @@ class ResPropertiesResourceIT {
         int databaseSizeBeforeUpdate = resPropertiesRepository.findAll().size();
         resProperties.setId(count.incrementAndGet());
 
+        // Create the ResProperties
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
+
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
         restResPropertiesMockMvc
-            .perform(put(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resProperties)))
+            .perform(
+                put(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
+            )
             .andExpect(status().isMethodNotAllowed());
 
         // Validate the ResProperties in the database
@@ -6675,12 +7163,15 @@ class ResPropertiesResourceIT {
         int databaseSizeBeforeUpdate = resPropertiesRepository.findAll().size();
         resProperties.setId(count.incrementAndGet());
 
+        // Create the ResProperties
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
+
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restResPropertiesMockMvc
             .perform(
-                patch(ENTITY_API_URL_ID, resProperties.getId())
+                patch(ENTITY_API_URL_ID, resPropertiesDTO.getId())
                     .contentType("application/merge-patch+json")
-                    .content(TestUtil.convertObjectToJsonBytes(resProperties))
+                    .content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
             )
             .andExpect(status().isBadRequest());
 
@@ -6695,12 +7186,15 @@ class ResPropertiesResourceIT {
         int databaseSizeBeforeUpdate = resPropertiesRepository.findAll().size();
         resProperties.setId(count.incrementAndGet());
 
+        // Create the ResProperties
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
+
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
         restResPropertiesMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, count.incrementAndGet())
                     .contentType("application/merge-patch+json")
-                    .content(TestUtil.convertObjectToJsonBytes(resProperties))
+                    .content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
             )
             .andExpect(status().isBadRequest());
 
@@ -6715,10 +7209,15 @@ class ResPropertiesResourceIT {
         int databaseSizeBeforeUpdate = resPropertiesRepository.findAll().size();
         resProperties.setId(count.incrementAndGet());
 
+        // Create the ResProperties
+        ResPropertiesDTO resPropertiesDTO = resPropertiesMapper.toDto(resProperties);
+
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
         restResPropertiesMockMvc
             .perform(
-                patch(ENTITY_API_URL).contentType("application/merge-patch+json").content(TestUtil.convertObjectToJsonBytes(resProperties))
+                patch(ENTITY_API_URL)
+                    .contentType("application/merge-patch+json")
+                    .content(TestUtil.convertObjectToJsonBytes(resPropertiesDTO))
             )
             .andExpect(status().isMethodNotAllowed());
 
