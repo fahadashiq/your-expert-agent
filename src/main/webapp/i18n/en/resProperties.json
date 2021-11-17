@@ -2,20 +2,20 @@
   "yourExpertAgentApp": {
     "resProperties": {
       "home": {
-        "title": "Res Properties",
+        "title": "Residential Properties",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Res Properties",
-        "createOrEditLabel": "Create or edit a Res Properties",
-        "notFound": "No Res Properties found"
+        "createLabel": "Create a new Residential Properties",
+        "createOrEditLabel": "Create or edit a Residential Properties",
+        "notFound": "No Residential Properties found"
       },
-      "created": "A new Res Properties is created with identifier {{ param }}",
-      "updated": "A Res Properties is updated with identifier {{ param }}",
-      "deleted": "A Res Properties is deleted with identifier {{ param }}",
+      "created": "A new Residential Properties is created with identifier {{ param }}",
+      "updated": "A Residential Properties is updated with identifier {{ param }}",
+      "deleted": "A Residential Properties is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Res Properties {{ id }}?"
+        "question": "Are you sure you want to delete Residential Property {{ id }}?"
       },
       "detail": {
-        "title": "Res Properties"
+        "title": "Residential Properties"
       },
       "id": "Id",
       "communityId": "Community Id",

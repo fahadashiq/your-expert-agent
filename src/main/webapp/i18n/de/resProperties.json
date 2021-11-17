@@ -2,20 +2,20 @@
   "yourExpertAgentApp": {
     "resProperties": {
       "home": {
-        "title": "Res Properties",
+        "title": "Residential Properties",
         "refreshListLabel": "Liste aktualisieren",
-        "createLabel": "Res Properties erstellen",
-        "createOrEditLabel": "Res Properties erstellen oder bearbeiten",
-        "notFound": "Keine Res Properties gefunden"
+        "createLabel": "Residential Properties erstellen",
+        "createOrEditLabel": "Residential Properties erstellen oder bearbeiten",
+        "notFound": "Keine Residential Properties gefunden"
       },
-      "created": "Res Properties erstellt mit ID {{ param }}",
-      "updated": "Res Properties aktualisiert mit ID {{ param }}",
-      "deleted": "Res Properties gelöscht mit ID {{ param }}",
+      "created": "Residential Properties erstellt mit ID {{ param }}",
+      "updated": "Residential Properties aktualisiert mit ID {{ param }}",
+      "deleted": "Residential Properties gelöscht mit ID {{ param }}",
       "delete": {
-        "question": "Soll Res Properties {{ id }} wirklich dauerhaft gelöscht werden?"
+        "question": "Soll Residential Properties {{ id }} wirklich dauerhaft gelöscht werden?"
       },
       "detail": {
-        "title": "Res Properties"
+        "title": "Residential Properties"
       },
       "id": "Id",
       "communityId": "Community Id",
