@@ -4,13 +4,13 @@
       "home": {
         "title": "Residential Properties",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Residential Properties",
-        "createOrEditLabel": "Create or edit a Residential Properties",
+        "createLabel": "Create a new Residential Property",
+        "createOrEditLabel": "Create or edit a Residential Property",
         "notFound": "No Residential Properties found"
       },
-      "created": "A new Residential Properties is created with identifier {{ param }}",
-      "updated": "A Residential Properties is updated with identifier {{ param }}",
-      "deleted": "A Residential Properties is deleted with identifier {{ param }}",
+      "created": "A new Residential Property is created with identifier {{ param }}",
+      "updated": "A Residential Property is updated with identifier {{ param }}",
+      "deleted": "A Residential Property is deleted with identifier {{ param }}",
       "delete": {
         "question": "Are you sure you want to delete Residential Property {{ id }}?"
       },
