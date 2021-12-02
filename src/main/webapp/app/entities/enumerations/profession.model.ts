@@ -1,0 +1,7 @@
+export enum Profession {
+  STUDENT = 'STUDENT',
+
+  WORKING_PRFESSIONAL = 'WORKING_PRFESSIONAL',
+
+  OTHER = 'OTHER',
+}

@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userInfo">
+      <h2 data-cy="userInfoDetailsHeading"><span jhiTranslate="yourExpertAgentApp.userInfo.detail.title">User Info</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ userInfo.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.userInfo.dateOfBirth">Date Of Birth</span></dt>
+        <dd>
+          <span>{{ userInfo.dateOfBirth | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.userInfo.profession">Profession</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'yourExpertAgentApp.Profession.' + userInfo.profession }}">{{ userInfo.profession }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.userInfo.familyMembers">Family Members</span></dt>
+        <dd>
+          <span>{{ userInfo.familyMembers }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.userInfo.user">User</span></dt>
+        <dd>
+          <span>{{ userInfo.user?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-info', userInfo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

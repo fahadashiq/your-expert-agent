@@ -1,0 +1,33 @@
+{
+  "name": "UserPropertyLink",
+  "fields": [
+    {
+      "fieldName": "isFavourite",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "userPropertyLink",
+      "relationshipName": "user"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "resProperties",
+      "otherEntityRelationshipName": "userPropertyLink",
+      "relationshipName": "resProperties"
+    }
+  ],
+  "entityTableName": "user_property_link",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211201225245"
+}

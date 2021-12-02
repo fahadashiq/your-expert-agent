@@ -1,0 +1,10 @@
+{
+  "yourExpertAgentApp": {
+    "Profession": {
+      "null": "",
+      "STUDENT": "STUDENT",
+      "WORKING_PRFESSIONAL": "WORKING_PRFESSIONAL",
+      "OTHER": "OTHER"
+    }
+  }
+}

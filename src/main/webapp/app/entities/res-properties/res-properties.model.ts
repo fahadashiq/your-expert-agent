@@ -1,4 +1,5 @@
 import * as dayjs from 'dayjs';
+import { IUserPropertyLink } from 'app/entities/user-property-link/user-property-link.model';
 
 export interface IResProperties {
   id?: number;
@@ -279,6 +280,7 @@ export interface IResProperties {
   propertyTag?: string;
   buildentoryViews?: number;
   location?: string;
+  userPropertyLinks?: IUserPropertyLink[] | null;
 }
 
 export class ResProperties implements IResProperties {
@@ -560,7 +562,8 @@ export class ResProperties implements IResProperties {
     public permalink?: string,
     public propertyTag?: string,
     public buildentoryViews?: number,
-    public location?: string
+    public location?: string,
+    public userPropertyLinks?: IUserPropertyLink[] | null
   ) {
     this.imgDeleted = this.imgDeleted ?? false;
   }

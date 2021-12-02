@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="crimeReport">
+      <h2 data-cy="crimeReportDetailsHeading"><span jhiTranslate="yourExpertAgentApp.crimeReport.detail.title">Crime Report</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ crimeReport.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.city">City</span></dt>
+        <dd>
+          <span>{{ crimeReport.city }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.population">Population</span></dt>
+        <dd>
+          <span>{{ crimeReport.population }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.murder">Murder</span></dt>
+        <dd>
+          <span>{{ crimeReport.murder }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.rape">Rape</span></dt>
+        <dd>
+          <span>{{ crimeReport.rape }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.robbery">Robbery</span></dt>
+        <dd>
+          <span>{{ crimeReport.robbery }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.aggravatedAssault">Aggravated Assault</span></dt>
+        <dd>
+          <span>{{ crimeReport.aggravatedAssault }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.propertyCrime">Property Crime</span></dt>
+        <dd>
+          <span>{{ crimeReport.propertyCrime }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.burglary">Burglary</span></dt>
+        <dd>
+          <span>{{ crimeReport.burglary }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.larceny">Larceny</span></dt>
+        <dd>
+          <span>{{ crimeReport.larceny }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.vehicleTheft">Vehicle Theft</span></dt>
+        <dd>
+          <span>{{ crimeReport.vehicleTheft }}</span>
+        </dd>
+        <dt><span jhiTranslate="yourExpertAgentApp.crimeReport.arson">Arson</span></dt>
+        <dd>
+          <span>{{ crimeReport.arson }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/crime-report', crimeReport.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "yourExpertAgentApp": {
+    "userInfo": {
+      "home": {
+        "title": "User Infos",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "User Info erstellen",
+        "createOrEditLabel": "User Info erstellen oder bearbeiten",
+        "notFound": "Keine User Infos gefunden"
+      },
+      "created": "User Info erstellt mit ID {{ param }}",
+      "updated": "User Info aktualisiert mit ID {{ param }}",
+      "deleted": "User Info gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll User Info {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "User Info"
+      },
+      "id": "ID",
+      "dateOfBirth": "Date Of Birth",
+      "profession": "Profession",
+      "familyMembers": "Family Members",
+      "user": "User"
+    }
+  }
+}

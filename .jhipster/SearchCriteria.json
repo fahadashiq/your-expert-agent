@@ -1,0 +1,29 @@
+{
+  "name": "SearchCriteria",
+  "fields": [
+    {
+      "fieldName": "critera",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2048"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "searchCriteria",
+      "relationshipName": "user"
+    }
+  ],
+  "entityTableName": "search_criteria",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211201225247"
+}

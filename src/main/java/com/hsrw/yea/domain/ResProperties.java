@@ -1,9 +1,12 @@
 package com.hsrw.yea.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -1683,7 +1686,42 @@ public class ResProperties implements Serializable {
     @Column(name = "location", length = 1000, nullable = false)
     private String location;
 
+    @OneToMany(mappedBy = "resProperties")
+    @JsonIgnoreProperties(value = { "user", "resProperties" }, allowSetters = true)
+    private Set<UserPropertyLink> userPropertyLinks = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public Set<UserPropertyLink> getUserPropertyLinks() {
+        return this.userPropertyLinks;
+    }
+
+    public void setUserPropertyLinks(Set<UserPropertyLink> userPropertyLinks) {
+        if (this.userPropertyLinks != null) {
+            this.userPropertyLinks.forEach(i -> i.setResProperties(null));
+        }
+        if (userPropertyLinks != null) {
+            userPropertyLinks.forEach(i -> i.setResProperties(this));
+        }
+        this.userPropertyLinks = userPropertyLinks;
+    }
+
+    public ResProperties userPropertyLinks(Set<UserPropertyLink> userPropertyLinks) {
+        this.setUserPropertyLinks(userPropertyLinks);
+        return this;
+    }
+
+    public ResProperties addUserPropertyLink(UserPropertyLink userPropertyLink) {
+        this.userPropertyLinks.add(userPropertyLink);
+        userPropertyLink.setResProperties(this);
+        return this;
+    }
+
+    public ResProperties removeUserPropertyLink(UserPropertyLink userPropertyLink) {
+        this.userPropertyLinks.remove(userPropertyLink);
+        userPropertyLink.setResProperties(null);
+        return this;
+    }
 
     public Long getId() {
         return this.id;

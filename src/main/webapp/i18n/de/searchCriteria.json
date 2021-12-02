@@ -1,0 +1,25 @@
+{
+  "yourExpertAgentApp": {
+    "searchCriteria": {
+      "home": {
+        "title": "Search Criteria",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Search Criteria erstellen",
+        "createOrEditLabel": "Search Criteria erstellen oder bearbeiten",
+        "notFound": "Keine Search Criteria gefunden"
+      },
+      "created": "Search Criteria erstellt mit ID {{ param }}",
+      "updated": "Search Criteria aktualisiert mit ID {{ param }}",
+      "deleted": "Search Criteria gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Search Criteria {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Search Criteria"
+      },
+      "id": "ID",
+      "critera": "Critera",
+      "user": "User"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "yourExpertAgentApp": {
+    "crimeReport": {
+      "home": {
+        "title": "Crime Reports",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Crime Report erstellen",
+        "createOrEditLabel": "Crime Report erstellen oder bearbeiten",
+        "notFound": "Keine Crime Reports gefunden"
+      },
+      "created": "Crime Report erstellt mit ID {{ param }}",
+      "updated": "Crime Report aktualisiert mit ID {{ param }}",
+      "deleted": "Crime Report gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Crime Report {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Crime Report"
+      },
+      "id": "ID",
+      "city": "City",
+      "population": "Population",
+      "murder": "Murder",
+      "rape": "Rape",
+      "robbery": "Robbery",
+      "aggravatedAssault": "Aggravated Assault",
+      "propertyCrime": "Property Crime",
+      "burglary": "Burglary",
+      "larceny": "Larceny",
+      "vehicleTheft": "Vehicle Theft",
+      "arson": "Arson"
+    }
+  }
+}

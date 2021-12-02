@@ -1,0 +1,129 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-crime-report-heading"
+        data-cy="CrimeReportCreateUpdateHeading"
+        jhiTranslate="yourExpertAgentApp.crimeReport.home.createOrEditLabel"
+      >
+        Create or edit a Crime Report
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.city" for="field_city">City</label>
+          <input type="text" class="form-control" name="city" id="field_city" data-cy="city" formControlName="city" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.population" for="field_population"
+            >Population</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="population"
+            id="field_population"
+            data-cy="population"
+            formControlName="population"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.murder" for="field_murder">Murder</label>
+          <input type="number" class="form-control" name="murder" id="field_murder" data-cy="murder" formControlName="murder" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.rape" for="field_rape">Rape</label>
+          <input type="number" class="form-control" name="rape" id="field_rape" data-cy="rape" formControlName="rape" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.robbery" for="field_robbery">Robbery</label>
+          <input type="number" class="form-control" name="robbery" id="field_robbery" data-cy="robbery" formControlName="robbery" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.aggravatedAssault" for="field_aggravatedAssault"
+            >Aggravated Assault</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="aggravatedAssault"
+            id="field_aggravatedAssault"
+            data-cy="aggravatedAssault"
+            formControlName="aggravatedAssault"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.propertyCrime" for="field_propertyCrime"
+            >Property Crime</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="propertyCrime"
+            id="field_propertyCrime"
+            data-cy="propertyCrime"
+            formControlName="propertyCrime"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.burglary" for="field_burglary">Burglary</label>
+          <input type="number" class="form-control" name="burglary" id="field_burglary" data-cy="burglary" formControlName="burglary" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.larceny" for="field_larceny">Larceny</label>
+          <input type="number" class="form-control" name="larceny" id="field_larceny" data-cy="larceny" formControlName="larceny" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.vehicleTheft" for="field_vehicleTheft"
+            >Vehicle Theft</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="vehicleTheft"
+            id="field_vehicleTheft"
+            data-cy="vehicleTheft"
+            formControlName="vehicleTheft"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.crimeReport.arson" for="field_arson">Arson</label>
+          <input type="number" class="form-control" name="arson" id="field_arson" data-cy="arson" formControlName="arson" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

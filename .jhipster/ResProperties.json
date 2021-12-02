@@ -1669,7 +1669,14 @@
       "fieldValidateRulesMaxlength": "1000"
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "userPropertyLink",
+      "otherEntityRelationshipName": "resProperties",
+      "relationshipName": "userPropertyLink"
+    }
+  ],
   "entityTableName": "res_properties",
   "dto": "mapstruct",
   "pagination": "pagination",

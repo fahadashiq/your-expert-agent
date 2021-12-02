@@ -1,0 +1,39 @@
+{
+  "name": "UserInfo",
+  "fields": [
+    {
+      "fieldName": "dateOfBirth",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "profession",
+      "fieldType": "Profession",
+      "fieldValues": "STUDENT,WORKING_PRFESSIONAL,OTHER"
+    },
+    {
+      "fieldName": "familyMembers",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "userInfo",
+      "relationshipName": "user",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "user_info",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211201225246"
+}

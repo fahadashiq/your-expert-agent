@@ -1,0 +1,26 @@
+{
+  "yourExpertAgentApp": {
+    "userPropertyLink": {
+      "home": {
+        "title": "User Property Links",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Property Link",
+        "createOrEditLabel": "Create or edit a User Property Link",
+        "notFound": "No User Property Links found"
+      },
+      "created": "A new User Property Link is created with identifier {{ param }}",
+      "updated": "A User Property Link is updated with identifier {{ param }}",
+      "deleted": "A User Property Link is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Property Link {{ id }}?"
+      },
+      "detail": {
+        "title": "User Property Link"
+      },
+      "id": "ID",
+      "isFavourite": "Is Favourite",
+      "user": "User",
+      "resProperties": "Res Properties"
+    }
+  }
+}

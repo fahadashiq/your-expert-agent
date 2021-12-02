@@ -1,0 +1,112 @@
+<div>
+  <h2 id="page-heading" data-cy="UserPropertyLinkHeading">
+    <span jhiTranslate="yourExpertAgentApp.userPropertyLink.home.title">User Property Links</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="yourExpertAgentApp.userPropertyLink.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-user-property-link"
+        [routerLink]="['/user-property-link/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="yourExpertAgentApp.userPropertyLink.home.createLabel"> Create a new User Property Link </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="userPropertyLinks?.length === 0">
+    <span jhiTranslate="yourExpertAgentApp.userPropertyLink.home.notFound">No userPropertyLinks found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="userPropertyLinks && userPropertyLinks.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isFavourite">
+            <span jhiTranslate="yourExpertAgentApp.userPropertyLink.isFavourite">Is Favourite</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="user.id">
+            <span jhiTranslate="yourExpertAgentApp.userPropertyLink.user">User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="resProperties.id">
+            <span jhiTranslate="yourExpertAgentApp.userPropertyLink.resProperties">Res Properties</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userPropertyLink of userPropertyLinks; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/user-property-link', userPropertyLink.id, 'view']">{{ userPropertyLink.id }}</a>
+          </td>
+          <td>{{ userPropertyLink.isFavourite }}</td>
+          <td>
+            {{ userPropertyLink.user?.id }}
+          </td>
+          <td>
+            <div *ngIf="userPropertyLink.resProperties">
+              <a [routerLink]="['/res-properties', userPropertyLink.resProperties?.id, 'view']">{{ userPropertyLink.resProperties?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/user-property-link', userPropertyLink.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/user-property-link', userPropertyLink.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(userPropertyLink)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="userPropertyLinks && userPropertyLinks.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

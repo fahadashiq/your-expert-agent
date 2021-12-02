@@ -1,0 +1,399 @@
+
+entity ResProperties {
+	id Long required,
+	communityId Integer required,
+	communityName String required maxlength(255),
+	builderId Integer required,
+	specialOffers String required maxlength(255),
+	brochure String required maxlength(255),
+	floorPlanId Integer required,
+	latitude String maxlength(20),
+	longitude String maxlength(20),
+	/** County */
+	county String maxlength(32),
+	/** Heating/Cooling */
+	heatsystem String maxlength(255),
+	/** Status */
+	liststatus String maxlength(50),
+	liststatusflag String maxlength(100),
+	carportcap String maxlength(100),
+	/** Possession */
+	possession String maxlength(255),
+	/** School 1 Name */
+	schoolname1 String maxlength(32),
+	/** Will Subdivide */
+	subdivide String maxlength(50),
+	/** Allow AVM */
+	vowavmyn String maxlength(1),
+	/** Present Use */
+	presentuse String maxlength(255),
+	/** Proposed Use */
+	proposeduse String maxlength(255),
+	/** Ranch Name */
+	ranchname String maxlength(15),
+	/** Bedroom 2 Width */
+	roombed2width Integer,
+	/** Formal Dining Level */
+	roomdininglevel String maxlength(50),
+	/** Living 2 Width */
+	roomliving2width Integer,
+	/** Study Level */
+	roomstudylevel String maxlength(50),
+	/** Area */
+	area Integer,
+	areatitle String maxlength(255),
+	/** HOA Dues */
+	assocfee Integer,
+	/** Proposed Financing */
+	financeproposed String maxlength(255),
+	/** Original List Price */
+	listpriceorig Integer,
+	/** Map Coord */
+	mapcoord String maxlength(5),
+	/** School 2 Name */
+	schoolname2 String maxlength(32),
+	/** Garage Width */
+	roomgaragewidth Integer,
+	/** Kitchen Other */
+	roomkitchendesc String maxlength(255),
+	/** Living 1 Width */
+	roomliving1width Integer,
+	/** Other Room 2 Width */
+	roomother2width Integer,
+	/** SqFt */
+	sqfttotal Integer,
+	/** Listing Office Name */
+	officelistOfficenam1 String maxlength(100),
+	/** School 3 Name */
+	schoolname3 String maxlength(32),
+	/** Zip Code */
+	zipcode String maxlength(25),
+	/** Barn 1 Length */
+	barn1length Integer,
+	/** Barn 3 Width */
+	barn3width Integer,
+	/** Bedroom 2 Length */
+	roombed2length Integer,
+	/** Bedroom 3 Length */
+	roombed3length Integer,
+	/** Other Room 1 Width */
+	roomother1width Integer,
+	/** Listing Agent Name */
+	agentlistFullname String maxlength(150),
+	/** Property Category */
+	proptype String maxlength(50),
+	mlsProptype String required maxlength(50),
+	/** School 4 Name */
+	schoolname4 String maxlength(32),
+	/** Cultivated Acres */
+	acrescultivated BigDecimal,
+	/** Barn 2 Length */
+	barn2length Integer,
+	/** Barn 2 Width */
+	barn2width Integer,
+	/** Complex Name */
+	complexname String maxlength(25),
+	/** Bedroom 4 Length */
+	roombed4length Integer,
+	/** Bed/Bath Features */
+	roombedbathdesc String maxlength(255),
+	/** Breakfast Width */
+	roombreakfastwidth Integer,
+	/** Specialty Rooms */
+	roomother String maxlength(255),
+	/** Utility Length */
+	roomutilitylength Integer,
+	/** Acres */
+	acres BigDecimal,
+	/** Block */
+	block String maxlength(7),
+	/** Directions */
+	directions String maxlength(150),
+	/** Subdivision */
+	subdivision String maxlength(40),
+	/** Year Built */
+	yearbuilt Integer,
+	yearbuiltdetails String required maxlength(255),
+	/** AG Exemption */
+	agexemption String maxlength(1),
+	/** Barn 1 Width */
+	barn1width Integer,
+	/** Barn 3 Length */
+	barn3length Integer,
+	/** Formal Dining Width */
+	roomdiningwidth Integer,
+	/** Study Width */
+	roomstudywidth Integer,
+	/** Soil */
+	soiltype String maxlength(255),
+	/** Appraiser's Name */
+	appraisername String maxlength(50),
+	/** Low Price */
+	listpricelow Integer,
+	/** Map Page */
+	mappage String maxlength(5),
+	unitnumber String required maxlength(20),
+	/** Street Direction */
+	streetdir String maxlength(50),
+	/** Street Type */
+	streettype String maxlength(50),
+	/** Sub Area */
+	subarea String maxlength(50),
+	subareatitle String maxlength(255),
+	/** # Half Baths */
+	bathshalf Integer,
+	/** Garage Length */
+	roomgaragelength Integer,
+	/** Property Type */
+	propsubtype String maxlength(50),
+	/** # Bedrooms */
+	beds Integer,
+	/** Master BR Width */
+	roommasterbedwidth Integer,
+	/** Study Length */
+	roomstudylength Integer,
+	/** Listing Agent ID */
+	agentlist String maxlength(20),
+	/** Street Name */
+	streetname String maxlength(50),
+	/** Breakfast Length */
+	roombreakfastlength Integer,
+	/** Kitchen Width */
+	roomkitchenwidth Integer,
+	/** Type of Fence */
+	fence String maxlength(255),
+	/** Total Baths */
+	bathstotal BigDecimal,
+	/** # Garage Spaces */
+	garagecap Integer,
+	/** List$/SqFt */
+	sqftprice BigDecimal,
+	/** Style of House */
+	style String maxlength(255),
+	/** Exterior Features */
+	exterior String maxlength(255),
+	/** Foundation */
+	foundation String maxlength(255),
+	/** Interior Features */
+	interior String maxlength(255),
+	/** Pool on Property */
+	poolyn String maxlength(255),
+	poolFeature String required maxlength(255),
+	/** List Price */
+	listprice Integer,
+	/** Range Pricing */
+	listpricerange String maxlength(1),
+	/** MLS # */
+	mlsnum String required maxlength(50),
+	matrixid Integer required,
+	/** Property Description */
+	remarks String maxlength(255),
+	/** State */
+	state String maxlength(50),
+	/** Roof */
+	roof String maxlength(255),
+	securityfeatures String required maxlength(255),
+	utilitiesother String required maxlength(255),
+	/** Common Features */
+	commonfeatures String maxlength(255),
+	/** Construction */
+	construction String maxlength(255),
+	/** Modified */
+	modified Instant required,
+	/** # of Stories */
+	stories Integer,
+	/** Formal Dining Length */
+	roomdininglength Integer,
+	/** Living 1 Length */
+	roomliving1length Integer,
+	/** Open House Time */
+	openhousetime String maxlength(25),
+	openhouseendtime String required maxlength(25),
+	/** Living 2 Length */
+	roomliving2length Integer,
+	/** Lot Description */
+	lotdesc String maxlength(255),
+	/** Open House Date */
+	openhousedate Instant,
+	/** Master BR Length */
+	roommasterbedlength Integer,
+	/** Other Room 1 Length */
+	roomother1length Integer,
+	/** Selling Office Name */
+	officesellOfficenam2 String maxlength(100),
+	/** Lot Size/Acreage */
+	lotsize String maxlength(50),
+	/** Street Directional Suffix */
+	streetdirsuffix String maxlength(50),
+	/** Photo Count */
+	photocount Integer,
+	/** School District */
+	schooldistrict String maxlength(32),
+	/** Street/Box Number */
+	streetnum Integer,
+	/** Street/Utilities */
+	utilities String maxlength(255),
+	/** Kitchen Equipment */
+	equipment String maxlength(255),
+	/** Bedroom 4 Width */
+	roombed4width Integer,
+	/** Kitchen Length */
+	roomkitchenlength Integer,
+	/** City */
+	city String maxlength(32),
+	/** Parking/Garage */
+	garagedesc String maxlength(255),
+	/** # Full Baths */
+	bathsfull Integer,
+	/** Bedroom 3 Width */
+	roombed3width Integer,
+	/** Utility Room */
+	roomutildesc String maxlength(255),
+	/** Utility Width */
+	roomutilitywidth Integer,
+	roomfullbathlength String required maxlength(10),
+	roomfullbathwidth String required maxlength(10),
+	roomhalfbathlength String required maxlength(10),
+	roomhalfbathwidth String required maxlength(10),
+	roomexerciselength String required maxlength(10),
+	roomexercisewidth String required maxlength(10),
+	roomstoragelength String required maxlength(10),
+	roomstoragewidth String required maxlength(10),
+	roomgamelength String required maxlength(10),
+	roomgamewidth String required maxlength(10),
+	roomguestlength String required maxlength(10),
+	roomguestwidth String required maxlength(10),
+	roomlibrarylength String required maxlength(10),
+	roomlibrarywidth String required maxlength(10),
+	roommedialength String required maxlength(10),
+	roommediawidth String required maxlength(10),
+	roommudlength String required maxlength(10),
+	roommudwidth String required maxlength(10),
+	roomofficelength String required maxlength(10),
+	roomofficewidth String required maxlength(10),
+	roomsaunalength String required maxlength(10),
+	roomsaunawidth String required maxlength(10),
+	roomsecondmasterlength String required maxlength(10),
+	roomsecondmasterwidth String required maxlength(10),
+	roomsunlength String required maxlength(10),
+	roomsunwidth String required maxlength(10),
+	roomspalength String required maxlength(10),
+	roomspawidth String required maxlength(10),
+	roomwinelength String required maxlength(10),
+	roomwinewidth String required maxlength(10),
+	juniorhighschoolname String required maxlength(255),
+	primaryschoolname String required maxlength(255),
+	seniorhighschoolname String required maxlength(255),
+	associationfee String required maxlength(255),
+	associationfeefrequency String required maxlength(255),
+	constructionmaterials String required maxlength(255),
+	heating String required maxlength(255),
+	accessoryunittype String required maxlength(255),
+	accessoryunityn String required maxlength(255),
+	flooring String required maxlength(255),
+	fireplacestotal String required maxlength(255),
+	fireplacefeatures String required maxlength(255),
+	securitysystemyn String required maxlength(255),
+	greenbuildingcertification String required maxlength(255),
+	greenenergyefficient String required maxlength(255),
+	energysavingfeatures String required maxlength(255),
+	lotnumber String required maxlength(255),
+	lotsizearea String required maxlength(255),
+	lotsizedimensions String required maxlength(255),
+	easements String required maxlength(255),
+	restrictions String required maxlength(255),
+	washerdryerconnections String required maxlength(255),
+	municipalutilitydistrictyn String required maxlength(255),
+	associationfeeincludes String required maxlength(255),
+	associationtype String required maxlength(255),
+	barninformation String required maxlength(255),
+	constructionmaterialswalls String required maxlength(255),
+	countyorparish String required maxlength(255),
+	exteriorbuildings String required maxlength(255),
+	farmranchfeatures String required maxlength(255),
+	fencedyardyn String required maxlength(255),
+	financingproposed String required maxlength(255),
+	handicapyn String required maxlength(255),
+	numberoftanksandponds String required maxlength(255),
+	parcelnumber String required maxlength(255),
+	virtualtoururlunbranded String required maxlength(255),
+	livingRoomFeature String required maxlength(255),
+	masterBedRoomFeature String required maxlength(255),
+	bedRoomFeature String required maxlength(255),
+	diningRoomFeature String required maxlength(255),
+	kitchenRoomFeature String required maxlength(255),
+	breakfastRoomFeature String required maxlength(255),
+	studyRoomFeature String required maxlength(255),
+	utilityRoomFeature String required maxlength(255),
+	fullBathRoomFeature String required maxlength(255),
+	halfBathRoomFeature String required maxlength(255),
+	exerciseRoomFeature String required maxlength(255),
+	extraStorageRoomFeature String required maxlength(255),
+	gameRoomFeature String required maxlength(255),
+	guestRoomFeature String required maxlength(255),
+	libraryRoomFeature String required maxlength(255),
+	mediaRoomFeature String required maxlength(255),
+	mudRoomFeature String required maxlength(255),
+	officeRoomFeature String required maxlength(255),
+	saunaRoomFeature String required maxlength(255),
+	secondMasterRoomFeature String required maxlength(255),
+	sunroomRoomFeature String required maxlength(255),
+	spaRoomFeature String required maxlength(255),
+	wineRoomFeature String required maxlength(255),
+	otherRoomFeature String required maxlength(255),
+	isLuxury String required maxlength(5),
+	isMoveInReady String required maxlength(5),
+	photoUrl String maxlength(255),
+	photo1Url String required maxlength(255),
+	photo2Url String required maxlength(255),
+	photo3Url String required maxlength(255),
+	photo4Url String required maxlength(255),
+	photo5Url String required maxlength(255),
+	photo6Url String required maxlength(255),
+	photo7Url String required maxlength(255),
+	photo8Url String required maxlength(255),
+	photo9Url String required maxlength(255),
+	photo10Url String required maxlength(255),
+	photo11Url String required maxlength(255),
+	photo12Url String required maxlength(255),
+	photo13Url String required maxlength(255),
+	photo14Url String required maxlength(255),
+	photo15Url String required maxlength(255),
+	photo16Url String required maxlength(255),
+	photo17Url String required maxlength(255),
+	photo18Url String required maxlength(255),
+	photo19Url String required maxlength(255),
+	photo20Url String required maxlength(255),
+	photo21Url String required maxlength(255),
+	photo22Url String required maxlength(255),
+	photo23Url String required maxlength(255),
+	photo24Url String required maxlength(255),
+	photo25Url String required maxlength(255),
+	photo26Url String required maxlength(255),
+	photo27Url String required maxlength(255),
+	photo28Url String required maxlength(255),
+	photo29Url String required maxlength(255),
+	photo30Url String required maxlength(255),
+	photo31Url String required maxlength(255),
+	photo32Url String required maxlength(255),
+	photo33Url String required maxlength(255),
+	photo34Url String required maxlength(255),
+	photo35Url String required maxlength(255),
+	photo36Url String required maxlength(255),
+	photo37Url String required maxlength(255),
+	photo38Url String required maxlength(255),
+	photo39Url String required maxlength(255),
+	photo40Url String required maxlength(255),
+	created Instant,
+	updated Instant required,
+	modifiedDate Instant required,
+	imgDeleted Boolean required,
+	retsServer String maxlength(100),
+	permalink String required maxlength(255),
+	propertyTag String required maxlength(50),
+	buildentoryViews Integer required,
+	location String required maxlength(1000)
+}
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

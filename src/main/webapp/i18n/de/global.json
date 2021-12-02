@@ -8,6 +8,10 @@
       "entities": {
         "main": "Entitäten",
         "resProperties": "Residential Properties",
+        "userPropertyLink": "User Property Link",
+        "userInfo": "User Info",
+        "searchCriteria": "Search Criteria",
+        "crimeReport": "Crime Report",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

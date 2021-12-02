@@ -1,0 +1,128 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-user-info-heading"
+        data-cy="UserInfoCreateUpdateHeading"
+        jhiTranslate="yourExpertAgentApp.userInfo.home.createOrEditLabel"
+      >
+        Create or edit a User Info
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.userInfo.dateOfBirth" for="field_dateOfBirth"
+            >Date Of Birth</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateOfBirth"
+              data-cy="dateOfBirth"
+              type="datetime-local"
+              class="form-control"
+              name="dateOfBirth"
+              formControlName="dateOfBirth"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('dateOfBirth')!.invalid && (editForm.get('dateOfBirth')!.dirty || editForm.get('dateOfBirth')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateOfBirth')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('dateOfBirth')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.userInfo.profession" for="field_profession">Profession</label>
+          <select class="form-control" name="profession" formControlName="profession" id="field_profession" data-cy="profession">
+            <option [ngValue]="null">{{ 'yourExpertAgentApp.Profession.null' | translate }}</option>
+            <option *ngFor="let profession of professionValues" [value]="profession">
+              {{ 'yourExpertAgentApp.Profession.' + profession | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.userInfo.familyMembers" for="field_familyMembers"
+            >Family Members</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="familyMembers"
+            id="field_familyMembers"
+            data-cy="familyMembers"
+            formControlName="familyMembers"
+          />
+          <div
+            *ngIf="
+              editForm.get('familyMembers')!.invalid && (editForm.get('familyMembers')!.dirty || editForm.get('familyMembers')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('familyMembers')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('familyMembers')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="yourExpertAgentApp.userInfo.user" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
+              *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
+            >
+              {{ userOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+{
+  "name": "CrimeReport",
+  "fields": [
+    {
+      "fieldName": "city",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "population",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "murder",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rape",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "robbery",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "aggravatedAssault",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "propertyCrime",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "burglary",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "larceny",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "vehicleTheft",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "arson",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "crime_report",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211201225248"
+}

@@ -8,4 +8,9 @@ import org.mapstruct.*;
  * Mapper for the entity {@link ResProperties} and its DTO {@link ResPropertiesDTO}.
  */
 @Mapper(componentModel = "spring", uses = {})
-public interface ResPropertiesMapper extends EntityMapper<ResPropertiesDTO, ResProperties> {}
+public interface ResPropertiesMapper extends EntityMapper<ResPropertiesDTO, ResProperties> {
+    @Named("id")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    ResPropertiesDTO toDtoId(ResProperties resProperties);
+}
